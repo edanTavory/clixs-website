@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Easing } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils";
 // ============================================================================
 
 const TRANSITION_DURATION = 0.4; // 400ms - smoother
-const TRANSITION_EASE: [number, number, number, number] = [0.4, 0, 0.2, 1]; // Smooth ease-out curve
+const TRANSITION_EASE_VALUES: [number, number, number, number] = [0.4, 0, 0.2, 1]; // Smooth ease-out curve
+const TRANSITION_EASE: Easing = TRANSITION_EASE_VALUES; // For framer-motion
 
 // Widths
 const COLLAPSED_WIDTH = "min(240px, 70vw)";
@@ -120,7 +121,7 @@ export function AskClixsBar() {
           exit={{ y: 24, opacity: 0 }}
           transition={{
             duration: prefersReducedMotion ? 0 : 0.28,
-            ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
+            ease: TRANSITION_EASE,
           }}
           className="fixed left-0 right-0 z-50 pointer-events-none"
           style={{
@@ -144,7 +145,7 @@ export function AskClixsBar() {
                 width: isExpanded ? EXPANDED_WIDTH : COLLAPSED_WIDTH,
                 transition: prefersReducedMotion
                   ? "none"
-                  : `width ${TRANSITION_DURATION}s cubic-bezier(${TRANSITION_EASE.join(",")})`,
+                  : `width ${TRANSITION_DURATION}s cubic-bezier(${TRANSITION_EASE_VALUES.join(",")})`,
               }}
             >
               <div

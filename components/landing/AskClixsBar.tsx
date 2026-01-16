@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 // ============================================================================
 
 const TRANSITION_DURATION = 0.4; // 400ms - smoother
-const TRANSITION_EASE = [0.4, 0, 0.2, 1]; // Smooth ease-out curve
+const TRANSITION_EASE: [number, number, number, number] = [0.4, 0, 0.2, 1]; // Smooth ease-out curve
 
 // Widths
 const COLLAPSED_WIDTH = "min(240px, 70vw)";

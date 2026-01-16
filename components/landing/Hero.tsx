@@ -260,7 +260,7 @@ function ChatComposer({
   value: string;
   setValue: (v: string) => void;
   onSubmit: () => void;
-  textareaRef: React.RefObject<HTMLTextAreaElement | null>;
+  textareaRef: React.RefObject<HTMLTextAreaElement>;
 }) {
   const [isFocused, setIsFocused] = useState(false);
 

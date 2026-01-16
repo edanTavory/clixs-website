@@ -32,10 +32,10 @@ const drawerVariants = {
     x: 0,
     opacity: 1,
     transition: {
-      type: "tween",
+      type: "tween" as const,
       duration: 0.28,
-      ease: [0.22, 1, 0.36, 1],
-      when: "beforeChildren",
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+      when: "beforeChildren" as const,
       staggerChildren: 0.04,
     },
   },
@@ -43,9 +43,9 @@ const drawerVariants = {
     x: "100%",
     opacity: 0,
     transition: {
-      type: "tween",
+      type: "tween" as const,
       duration: 0.24,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   },
 };
@@ -60,7 +60,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.2,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   },
 };

@@ -27,13 +27,13 @@ const panelVariants = {
     opacity: 1,
     transition: {
       height: {
-        type: "tween",
+        type: "tween" as const,
         duration: 0.28,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
       },
       opacity: {
         duration: 0.2,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
       staggerChildren: 0.035,
       delayChildren: 0.08,
@@ -44,9 +44,9 @@ const panelVariants = {
     opacity: 0,
     transition: {
       height: {
-        type: "tween",
+        type: "tween" as const,
         duration: 0.22,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
       },
       opacity: {
         duration: 0.15,
@@ -67,7 +67,7 @@ const itemVariants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.25,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   },
   exit: {
@@ -91,7 +91,7 @@ const ctaVariants = {
     filter: "blur(0px)",
     transition: {
       duration: 0.3,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
       delay: 0.15,
     },
   },

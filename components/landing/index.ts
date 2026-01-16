@@ -1,0 +1,17 @@
+export { Navbar } from "./Navbar";
+export { MobileNavDrawer } from "./MobileNavDrawer";
+export { TopNavPanel } from "./TopNavPanel";
+export { FloatingHeader } from "./FloatingHeader";
+export { Hero } from "./Hero";
+export { ConnectorPill } from "./ConnectorPill";
+export { SocialProof } from "./SocialProof";
+export { ProblemSolution } from "./ProblemSolution";
+export { Demo } from "./Demo";
+export { Features } from "./Features";
+export { HowItWorks } from "./HowItWorks";
+export { Integrations } from "./Integrations";
+export { Pricing } from "./Pricing";
+export { FAQ } from "./FAQ";
+export { FinalCTA } from "./FinalCTA";
+export { Footer } from "./Footer";
+export { AskClixsBar } from "./AskClixsBar";

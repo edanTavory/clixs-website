@@ -120,7 +120,7 @@ export function AskClixsBar() {
           exit={{ y: 24, opacity: 0 }}
           transition={{
             duration: prefersReducedMotion ? 0 : 0.28,
-            ease: TRANSITION_EASE,
+            ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
           }}
           className="fixed left-0 right-0 z-50 pointer-events-none"
           style={{

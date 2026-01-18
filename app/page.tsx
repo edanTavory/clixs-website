@@ -3,6 +3,7 @@ import {
   Hero,
   Footer,
   AskClixsBar,
+  WaitlistPopup,
 } from "@/components/landing";
 
 import {
@@ -13,6 +14,9 @@ import {
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#FAFAFA]">
+      {/* Blocking waitlist popup - cannot be dismissed */}
+      <WaitlistPopup />
+
       <FloatingHeader links={navLinks} />
 
       {/* Content with padding for floating header */}

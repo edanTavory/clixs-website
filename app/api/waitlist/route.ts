@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
   try {
@@ -11,50 +12,35 @@ export async function POST(request: Request) {
       );
     }
 
-    // Send notification email via webhook
-    const webhookUrl = process.env.WAITLIST_WEBHOOK_URL;
+    // Create SMTP transporter
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      port: Number(process.env.SMTP_PORT) || 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
 
-    if (webhookUrl) {
-      // Use a webhook service like Make.com, Zapier, or custom endpoint
-      await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          timestamp: new Date().toISOString(),
-          source: "Clixs Website Waitlist",
-        }),
-      });
-    }
+    // Send email notification
+    await transporter.sendMail({
+      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      to: "idan@idan-tavori.co.il",
+      subject: `🚀 New Waitlist Signup: ${email}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #0b0b0c;">New Waitlist Signup!</h2>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0 0 10px 0;"><strong>Email:</strong> ${email}</p>
+            <p style="margin: 0 0 10px 0;"><strong>Date:</strong> ${new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" })}</p>
+            <p style="margin: 0;"><strong>Source:</strong> Clixs Website</p>
+          </div>
+          <p style="color: #666; font-size: 12px;">This email was sent automatically from the Clixs waitlist form.</p>
+        </div>
+      `,
+    });
 
-    // Also send email directly using a simple email service
-    // Using Resend, SendGrid, or any other email API
-    const emailApiKey = process.env.RESEND_API_KEY;
-
-    if (emailApiKey) {
-      await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${emailApiKey}`,
-        },
-        body: JSON.stringify({
-          from: "Clixs Waitlist <noreply@clixs.io>",
-          to: "idan@idan-tavoti.co.il",
-          subject: `New Waitlist Signup: ${email}`,
-          html: `
-            <h2>New Waitlist Signup!</h2>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Date:</strong> ${new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" })}</p>
-            <p><strong>Source:</strong> Clixs Website</p>
-          `,
-        }),
-      });
-    }
-
-    // Fallback: Log to console for debugging
     console.log(`[Waitlist] New signup: ${email} at ${new Date().toISOString()}`);
 
     return NextResponse.json({ success: true });

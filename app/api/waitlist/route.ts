@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     // Send email notification
     await transporter.sendMail({
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
-      to: "idan@idan-tavori.co.il",
+      to: "edantavory16@gmail.com",
       subject: `🚀 New Waitlist Signup: ${email}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

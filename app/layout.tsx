@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     "ppc management",
     "ad campaign builder",
   ],
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
